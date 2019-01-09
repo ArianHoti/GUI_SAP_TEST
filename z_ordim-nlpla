@@ -1,0 +1,22 @@
+*&---------------------------------------------------------------------*
+*& Report z_ordim-nlpla
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT z_ordim-nlpla.
+
+PARAMETERS: p_lgnum TYPE /scwm/lgnum,
+            p_tanum TYPE /scwm/tanum.
+
+DATA:        ls_ordim    TYPE /scwm/ordim_o.
+
+DATA:        lo_wt     TYPE REF TO /swan/cl_wt_open_active.
+
+lo_wt = /swan/cl_wt_open_active=>get_instance(
+            iv_lgnum               = p_lgnum
+            iv_tanum               = p_tanum
+        ).
+
+ls_ordim = lo_wt->get_wt_data( ).
+
+WRITE: ls_ordim-nlpla.
